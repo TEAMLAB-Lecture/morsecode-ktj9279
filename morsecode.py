@@ -85,29 +85,33 @@ def is_validated_english_sentence(user_input):
     """
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
-    user_input_alpha = []
+#     user_input_alpha = []
     pass_char_list = ['.', ',', '!', '?', ' ']
+    cnt_alpha = 0
 
     for i, c in enumerate(user_input):
         # 알파벳인 경우
         if c.isalpha():
-            user_input_alpha.append(c)
+            cnt_alpha += 1
         # 문장부호 또는 공백인 경우
         elif c in pass_char_list:
-            try:
-                if i == 0 or user_input[i + 1].isalpha():
-                    return False
-            except IndexError as err:
-                pass
+            pass
         # 숫자 또는 특수문자인 경우
         else:
             return False
+
+    # 알파벳이 한 글자라도 있는 경우
+    if cnt_alpha == 0:
+        return False
     else:
-        # 알파벳이 한 글자라도 있는 경우
-        if user_input_alpha:
-            return True
-        else:
-            return False
+        return True
+
+    # else:
+    #     # 알파벳이 한 글자라도 있는 경우
+    #     if user_input_alpha:
+    #         return True
+    #     else:
+    #         return False
     # ==================================
 
 
