@@ -85,9 +85,11 @@ def is_validated_english_sentence(user_input):
     """
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
-#     user_input_alpha = []
     pass_char_list = ['.', ',', '!', '?', ' ']
     cnt_alpha = 0
+
+    if not user_input:
+        return False
 
     for i, c in enumerate(user_input):
         # 알파벳인 경우
@@ -105,13 +107,6 @@ def is_validated_english_sentence(user_input):
         return False
     else:
         return True
-
-    # else:
-    #     # 알파벳이 한 글자라도 있는 경우
-    #     if user_input_alpha:
-    #         return True
-    #     else:
-    #         return False
     # ==================================
 
 
@@ -301,21 +296,25 @@ def main():
     print("Morse Code Program!!")
     # ===Modify codes below=============
 
-    user_input = input('Input your message(H - Help, 0 - Exit)').strip()
+    
 
-    if user_input == '0':
-        print("Good Bye")
-        print("Morse Code Program Finished!!")
-    elif is_help_command(user_input):
-        get_help_message()
-    elif is_validated_english_sentence(user_input):
-        print(encoding_sentence(user_input))
-    elif is_validated_morse_code(user_input):
-        print(decoding_sentence(user_input))
-    else:
-        print('Wrong Input')
+    while True:
+        user_input = input('Input your message(H - Help, 0 - Exit): ')
+
+        if user_input == '0':
+            break
+        elif is_help_command(user_input):
+            get_help_message()
+        elif is_validated_english_sentence(user_input):
+            print(encoding_sentence(user_input))
+        elif is_validated_morse_code(user_input):
+            print(decoding_sentence(user_input))
+        else:
+            print('Wrong Input')
 
     # ==================================
+    print("Good Bye")
+    print("Morse Code Program Finished!!")
 
 if __name__ == "__main__":
     main()
